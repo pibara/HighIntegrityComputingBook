@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+<title>Practical set theory and boolean algebra</title><link rel="stylesheet" href="style.css" type="text/css"/>
+<meta charset="utf-8"/>
+</head>
+<body>
+<section class="body-rw Chapter-rw" epub:type="bodymatter chapter">
+<header>
+<h1><span class="audio" id="c001s0000">Practical set theory and boolean algebra</span></h1></header>
+<div class="block-rw extract-rw">
+<p>“The greatest enemy of knowledge is not ignorance, it is the illusion of knowledge."</p>
+<p class="source-rw">—Stephen Hawkings</p>
+</div>
+<div>
+In the chapter after this one we shall be having a look at different forms of access control systems in current day systems. The access controls in these systems at first glance may appear to be very much different from each other, so much so that a regular user of any of these systems may feel they are completely distinct mechanisms with  a completely distinct set goals and scope. In this chapter we shall try to give you the insights you will need to see how these different technologies can be viewed as different implementations of the same abstractions. Learning this should help you to see the bigger picture and should keep you from getting lost in the implementation details of specific technologies.  In order for you, the reader, to be able to understand this bigger picture, and for you to be able to place the different mechanisms into this picture, we shall in this chapter try to prepare you by taking one step back from the practical day to day individual system usage, and look at a bit of theory that helps to look at the different mechanisms with a uniform view. We shall be discussing a few basic notations, rules and tools for working with set theory and boolean algebra. In the next chapter we shall be applying these sniplets of theory to access control mechanisms that we will have to work with in real life systems.
+</div>
+<div>
+Set theory is a branch of mathematics that is concerned with collections of objects. These collections of objects, called sets can be reasoned about using a relatively simple set of mathematical rules closely related to  similar rules used in an other mathematics tool set called boolean algebra. In boolean algebra, instead of working with the notion of sets, we work with the notions of true (1) and false (0).
+</div>
+<div>
+Given the similarities between set theory and boolean algebra, and given that this book is a practical usage centered book, we shall be relatively loose in usage of the tools provider by these two subjects. That is, we shall be using these concepts interchangeably.
+</div>
+<div>
+Set theory is concerned with groups of objects. Lets start of by addressing some notational issues.  The below subset defines the most important notations and their meaning in plain English.
+</div>
+<table border="1">
+<tr><td>
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+  <mi>A</mi>
+  <mo>=</mo>
+  <mfenced open="{" close="}" separators=",">
+    <mrow>
+      <mi>a</mi>
+      <mn>0</mn>
+    </mrow>
+    <mrow>
+      <mi>a</mi>
+      <mn>1</mn>
+    </mrow>
+    <mrow>
+      <mi>a</mi>
+      <mn>2</mn>
+    </mrow>
+  </mfenced>
+</mrow>
+</math>
+</td><td>The set named <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi></mrow></math> contains 3 objects, <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math>,<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mn>1</mn></msub></mrow></math>  and <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mn>2</mn></msub></mrow></math>.</td></tr>
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <msub>
+       <mi>a</mi>
+       <mn>1</mn>
+    </msub>
+    <mo>&#8712;</mo>
+    <mi>A</mi>
+  </mrow>
+</math>
+</td><td>Object a1 is an element in the set name A</td></tr>
+<tr><td>
+</td><td>The empty set,  that is,  a set with no objects in.</td></tr>
+<tr><td><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>U</mi></mrow></math></td><td>The universal set containing all objects that any set may define.</td></tr>
+<tr><td><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mover>
+      <mi>A</mi>
+      <mi>_</mi>
+</mover>
+</math></td><td>All objects that are not part of the set named A.</td></tr>
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mi>C</mi>
+<mo>=</mo>
+<mi>A</mi>
+<mo>&#x222a;</mo>
+<mi>B</mi>
+</mrow>
+</math>
+</td><td>The set named C contains all objects that are contained in the union of the sets A and B. If an object is part of either A or B or both, its pat of the union of A and B and thus of D.</td></tr>
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mi>D</mi>
+<mo>=</mo>
+<mi>A</mi>
+<mo>&#x2229;</mo>
+<mi>B</mi>
+</mrow>
+</math>
+</td><td>The set named D contains the objects that are in the intersection of A and B. Only the objects that are defined to be part of both the set named A and the set named B.</td></tr>
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mi>B</mi>
+<mo>&#x2283;</mo>
+<mi>A</mi>
+</mrow>
+</math>
+</td><td>Set B is a superset of set A. The set named B contains all the object that are in the set named A and possibly more.</td></tr>
+<tr><td>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mi>A</mi>
+<mo>&#x2282;</mo>
+<mi>B</mi>
+</mrow>
+</math>
+</td><td>The set named A is a subset of the objects that are in the set named B.This subset can be as big as B itself.</td></tr>
+</table>
+<div>
+As you can see, reading the English explanations, the notations are quite a bit more compact than their English counterparts. This is one reason that we choose to use these notations. A second reason is that we can do some basic operator precedence and parentheses  tricks that we learned in elementary school.
+</div>
+<div>
+Lets take a big step back in time and look at some of the elementary school knowledge that has probably turned so much into a second nature that we may have forgotten that there are rules we adhere by. Rules that will proof useful when looking at set theory.Lets look at the following line:
+</div>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mn>7</mn>
+<mo>+</mo>
+<mn>3</mn>
+<mo>x</mo>
+<mn>2</mn>
+<mo>=</mo>
+<mn>7</mn>
+<mo>+</mo>
+<mo>(</mo>
+<mn>3</mn>
+<mo>x</mo>
+<mn>2</mn>
+<mo>)</mo>
+<mo>=</mo>
+<mn>7</mn>
+<mo>+</mo>
+<mn>6</mn>
+<mo>=</mo>
+<mn>13</mn>
+</mrow>
+</math>
+</div>
+<div>
+The same way that in the above elementary school math example the multiplication takes precedence over the addition, the intersection operator in set theory takes precedence 
+over the union operator.
+</div>
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mi>A</mi>
+<mo>&#x222a;</mo>
+<mi>B</mi>
+<mo>&#x2229;</mo>
+<mi>C</mi>
+<mo>=</mo>
+<mi>A</mi>
+<mo>&#x222a;</mo>
+<mo>(</mo>
+<mi>B</mi>
+<mo>&#x2229;</mo>
+<mi>C</mi>
+<mo>)</mo>
+</mrow>
+</math>
+</div>
+<div>
+Lets look at a few more parallels :
+</div>
+
+</section></body></html>
